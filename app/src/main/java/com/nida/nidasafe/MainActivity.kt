@@ -39,7 +39,7 @@ class MainActivity : Activity() {
             gravity = Gravity.CENTER
         }
         val subtitle = TextView(this).apply {
-            text = "イヤホンが外れたら、音漏れを防ぐ"
+            text = "音量の急上昇とスピーカーからの音漏れを防ぐ"
             textSize = 16f
             setTextColor(0xFF333333.toInt())
             gravity = Gravity.CENTER
@@ -58,7 +58,7 @@ class MainActivity : Activity() {
                 val intent = Intent(this@MainActivity, HeadphoneGuardService::class.java)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) startForegroundService(intent)
                 else startService(intent)
-                status.text = "保護機能を起動しました。通知から状態を確認できます。"
+                status.text = "保護中：急な音量上昇を抑制・スピーカー最大20%"
             }
         }
         val stop = Button(this).apply {
@@ -69,7 +69,7 @@ class MainActivity : Activity() {
             }
         }
         val note = TextView(this).apply {
-            text = "イヤホン切断時にメディア音量を0にし、再生中アプリへ一時停止を要求します。Androidやアプリ側の制約により、停止動作は保証されない場合があります。"
+            text = "保護中は音量が短時間に2段階以上上がる操作を元の音量へ戻します。イヤホン未接続時は本体スピーカーのメディア音量を最大20%に制限します。イヤホン切断時は音量0と一時停止を要求します。Androidの仕様や他アプリの動作により、完全な阻止を保証できない場合があります。"
             textSize = 13f
             setTextColor(0xFF555555.toInt())
             setPadding(0, 24, 0, 0)
